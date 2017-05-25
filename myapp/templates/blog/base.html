@@ -1,0 +1,17 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <title>Hugh's blog</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    </head>
+    <body>
+        <div class="page-header">
+            <nav class="navbar-brand">Hugh's Demo Blog</nav>
+        </div>
+        <div class="container content">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>
