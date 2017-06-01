@@ -72,6 +72,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
+REST_FRAMEWORK = {
+    'PAGE_SIZE': 10,
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    ),
+}
+
+JWT_AUTH = {
+    'JWT_ALLOW_REFRESH': True,
+}
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
@@ -102,6 +115,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Firstly redirect to https
+#SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+#SECURE_SSL_REDIRECT = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/

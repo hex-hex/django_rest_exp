@@ -18,6 +18,6 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^', include('myapp.urls'))
-    #Can not end the regular expression with '$' if it has descendants.
+    url(r'^', include('myapp.urls')),
+    url(r'^snippets/', include('snippets.urls'))
 ]

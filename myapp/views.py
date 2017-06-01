@@ -1,8 +1,19 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
+from rest_framework import viewsets, permissions
+
+from myapp.serializers import PostSerializer
 from .models import Post
-#.models means in the current folder
 from .form import PostForm
+
+
+class PostViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
 
 def post_list(request):
     '''Show the list of the blog
