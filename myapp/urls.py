@@ -1,5 +1,7 @@
 from django.conf.urls import url, include
 from rest_framework.routers import DefaultRouter
+
+from myapp.views import CreateUserView, ActivateUser
 from . import views
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
 
@@ -12,6 +14,12 @@ router.register(r'Post', views.PostViewSet)
 
 urlpatterns = [
     url(r'^$', views.post_list, name='post_list'),
+    url(
+        '^api-activate/(?P<token>.+?)/$',
+        ActivateUser.as_view(),
+        name='activate-user'
+    ),
+    url(r'^api-token-register/$', CreateUserView.as_view()),
     url(r'^api-token-auth/', obtain_jwt_token),
     url(r'^api-token-refresh/', refresh_jwt_token),
     url(r'^api-token-verify/', verify_jwt_token),
