@@ -1,10 +1,8 @@
 from django.contrib.auth import get_user_model
-from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from django.utils import timezone
 from rest_framework import serializers
 from myapp.models import Post
-import time
 
 
 class PostSerializer(serializers.HyperlinkedModelSerializer):
@@ -27,7 +25,7 @@ class PostSerializer(serializers.HyperlinkedModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User 
+        model = get_user_model()
         fields = ('username', 'password', 'email')
 
     def create(self, validated_data):
@@ -37,6 +35,5 @@ class UserSerializer(serializers.ModelSerializer):
         if password is not None:
             instance.set_password(password)
         instance.save()
-        print(instance.password)
         return instance
 
